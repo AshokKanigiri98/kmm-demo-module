@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "kmm-demo-module"
 include(":app")
- 
+include(":core")
