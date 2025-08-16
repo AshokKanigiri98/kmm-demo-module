@@ -60,8 +60,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(project(":core"))
+    implementation(project(":login"))
 }
 
 tasks.register("install") {
     dependsOn(":core:publishToMavenLocal")
+    dependsOn(":login:publishToMavenLocal")
 }

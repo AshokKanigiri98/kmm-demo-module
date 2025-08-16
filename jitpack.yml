@@ -4,3 +4,4 @@ jdk:
 install:
   # Build only the core module and publish it
   - ./gradlew :core:publishToMavenLocal
+  - ./gradlew :login:publishToMavenLocal
