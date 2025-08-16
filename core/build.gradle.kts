@@ -36,7 +36,15 @@ android {
         compose = true
     }
 }
-
+publishing {
+    publications {
+        withType<MavenPublication> {
+            groupId = "com.github.AshokKanigiri98"
+            artifactId = "kmm-demo-module" // what users put after the colon
+            version = "1.0.4"
+        }
+    }
+}
 dependencies {
 
     implementation(libs.androidx.core.ktx)
