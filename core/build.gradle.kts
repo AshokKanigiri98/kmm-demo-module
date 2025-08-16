@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library") // for Android, omit if pure Kotlin
+    id("com.android.library")
     id("maven-publish")
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
@@ -11,8 +11,6 @@ android {
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 35
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -25,6 +23,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -36,17 +35,22 @@ android {
         compose = true
     }
 }
-publishing {
-    publications {
-        withType<MavenPublication> {
-            groupId = "com.github.AshokKanigiri98"
-            artifactId = "kmm-demo-module" // what users put after the colon
-            version = "1.0.4"
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+
+                groupId = "com.github.AshokKanigiri98"
+                artifactId = "kmm-demo-module"
+                version = "1.4.0"
+            }
         }
     }
 }
-dependencies {
 
+dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -55,6 +59,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
